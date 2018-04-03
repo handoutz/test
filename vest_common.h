@@ -41,7 +41,7 @@ public:
                 } catch (VTestException &e) {
                     throw e;
                 } catch (std::exception &e) {
-                    throw VTestException(e.what(), HERE_LOC());
+                    throw VTestException(e.what(), false, HERE_LOC());
                 }
             });
     }

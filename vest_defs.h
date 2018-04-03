@@ -38,17 +38,31 @@ struct location {
 class VTestException : std::runtime_error {
 public:
     const text what;
+    bool b_result;
+    int i_result;
+    text s_result;
     location where;
 
     ~VTestException() throw() {}
 
-    VTestException(text desc, location loc)
-            : what(desc), where(loc), std::runtime_error(as_str()) {
+    VTestException(text desc, bool result, location loc)
+            : what(desc), where(loc), std::runtime_error(as_str()), b_result(result), i_result(-1), s_result("") {
+        if (result)s_result = "true";
+        else s_result = "false";
+    }
+
+    VTestException(text desc, int result, location loc)
+            : what(desc), where(loc), std::runtime_error(as_str()), b_result(false), i_result(result), s_result("") {
+        s_result = l64a(result);
+    }
+
+    VTestException(text desc, text result, location loc)
+            : what(desc), where(loc), std::runtime_error(as_str()), b_result(false), i_result(-1), s_result(result) {
     }
 
     const text as_str() {
         std::stringstream stream;
-        stream << "Exception '" << what << "' thrown by " << where.as_str();
+        stream << "Exception '" << what << "' (result='" << s_result << "') thrown by " << where.as_str();
         return stream.str();
     }
 };

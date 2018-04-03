@@ -46,19 +46,25 @@ public:
 
     void run_all(std::function<std::chrono::duration<double>(VTestCase *)> run) {
         m_runner->output("Running Spec %s..\n", m_desc.c_str());
+        int nPass = 0, nFail = 0;
         auto start = std::chrono::system_clock::now();
         for (auto vt : m_spec) {
             m_runner->output("\t'%s'... ", vt->m_desc.c_str());
             try {
                 auto dur = run(vt);
                 m_runner->output("\t\033[1;32mSUCCESS!\033[0m %lfms %s\n", dur.count() * 1000, vt->m_desc.c_str());
+                nPass++;
             } catch (VTestException &e) {
                 m_runner->output("\t\033[1;31mFAIL!\033[0m %s\n", e.as_str().c_str());
+                nFail++;
             }
         }
         auto end = std::chrono::system_clock::now();
         std::chrono::duration<double> dur = end - start;
-        m_runner->output("Spec %s took %lfms", m_desc.c_str(), dur.count() * 1000);
+        double passPct = ((double) nPass * 100.0) / (((double) nPass + (double) nFail) * 100) * 100;
+        m_runner->output("[%i%% pass][%i/%i passed] Spec %s took %lfms\n\n", (int) passPct, nPass, nFail + nPass,
+                         m_desc.c_str(),
+                         dur.count() * 1000);
     }
 
 };
