@@ -3,5 +3,5 @@ project(vtest)
 
 set(CMAKE_CXX_STANDARD 14)
 
-set(SOURCE_FILES main.cpp vest_common.h vest.h vest.cpp vest_spec.h vest_defs.h)
+set(SOURCE_FILES main.cpp vest_common.h vest.h vest_spec.h vest_defs.h)
 add_executable(vtest ${SOURCE_FILES})
