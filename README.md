@@ -6,9 +6,9 @@ I got bored and made this
 #include "vest.h"
 
 int main() {
-    vest_runner.new_spec("lol")->add_tpl([]() {
+    vest_runner.new_spec("lol")->add([]() {
         EXPECT(true);
-    }, "should pass")->add_tpl([]() {
+    }, "should pass")->add([]() {
         EXPECT(false);
     }, "should fail");
     vest_runner.run_all_specs();
