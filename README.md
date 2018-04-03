@@ -1,6 +1,6 @@
 # VTest C++ Testing 'Framework'
-
-I got bored and made this. Usage is simple, just include the `dist/vest.h` header and use vest_runner as below: 
+##Intro
+I got bored and made this. Usage is simple, just include the `dist/vest.h` header and use the macros as below: 
 ```C++
 #include "dist/vest.h"
 
@@ -29,3 +29,8 @@ int main() {
     return 0;
 }
 ```
+##Assertion Macros
+- `EXPECT_TRUE(expr)` expects that (expr) evaluates to true
+- `EXPECT_FALSE(expr)` expects that (expr) evaluates to false
+- `EXPECT_EQ(expr1, expr2)` expects that (expr1==expr2) evaluates to true
+- `EXPECT_NEQ(expr1, expr2)` expects that (expr1!=expr2) evaluates to true
