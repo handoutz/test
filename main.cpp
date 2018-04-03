@@ -1,4 +1,4 @@
-#include "vest.h"
+#include "dist/vest.h"
 
 int main() {
     vest_runner.new_spec("Basic acceptance testing")

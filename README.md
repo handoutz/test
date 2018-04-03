@@ -1,9 +1,9 @@
 # VTest C++ Testing 'Framework'
 
-I got bored and made this
+I got bored and made this. Usage is simple, just include the `dist/vest.h` header and use vest_runner 
 
 ```C++
-#include "vest.h"
+#include "dist/vest.h"
 
 int main() {
     vest_runner.new_spec("Basic acceptance testing")
