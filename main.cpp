@@ -11,6 +11,10 @@ int main() {
             ->add("catch exceptions", []() {
                 throw std::runtime_error("exceptional!");
             });
+    SPEC("Basic macro")
+        CASE("should pass", { EXPECT(true); });
+        CASE("should fail", { EXPECT(false); });
+    ENDSPEC;
     vest_runner.run_all_specs();
     return 0;
 }
